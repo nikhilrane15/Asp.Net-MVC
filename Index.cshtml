@@ -1,0 +1,50 @@
+@model List<ProductModel>
+
+@using (Html.BeginForm("Search", "Search", FormMethod.Post))
+{
+    <input type="text" name="productName" placeholder="Product Name" />
+    <input type="text" name="size" placeholder="Size" />
+    <input type="number" name="price" placeholder="Price" />
+    <input type="date" name="mfgDate" placeholder="Manufacture Date" />
+    <input type="text" name="category" placeholder="Category" />
+    
+    <select name="conjunction">
+        <option value="AND">AND</option>
+        <option value="OR">OR</option>
+    </select>
+    
+    <button type="submit">Search</button>
+    
+    <a href="#" onclick="clearSearch()">Clear Search</a>
+}
+
+<table>
+    <thead>
+        <tr>
+            <th>Product Name</th>
+            <th>Size</th>
+            <th>Price</th>
+            <th>Manufacture Date</th>
+            <th>Category</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.ProductName</td>
+                <td>@product.Size</td>
+                <td>@product.Price</td>
+                <td>@product.MfgDate</td>
+                <td>@product.Category</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    function clearSearch() {
+        location.reload();
+    }
+</script>
+
